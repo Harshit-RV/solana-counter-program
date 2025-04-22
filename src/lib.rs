@@ -1,14 +1,21 @@
-pub fn add(left: u64, right: u64) -> u64 {
-    left + right
-}
+use borsh:: {
+    BorshDeserialize,
+    BorshSerialize
+};
 
-#[cfg(test)]
-mod tests {
-    use super::*;
+use solana_program::{
+    account_info::{next_account_info, AccountInfo}, 
+    entrypoint::{entrypoint, ProgramResult},
+    msg,
+    pubkey::Pubkey,
+};
 
-    #[test]
-    fn it_works() {
-        let result = add(2, 2);
-        assert_eq!(result, 4);
-    }
+entrypoint!(counter_contract);
+
+pub fn counter_contract(
+    program_id: &Pubkey,
+    accounts: &[AccountInfo],
+    instruction_data: &[u8],
+) -> ProgramResult {
+    Ok(())
 }
