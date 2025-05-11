@@ -24,7 +24,7 @@ struct Counter {
 entrypoint!(counter_contract);
 
 pub fn counter_contract(
-    program_id: &Pubkey,
+    _program_id: &Pubkey,
     accounts: &[AccountInfo],
     instruction_data: &[u8],
 ) -> ProgramResult {
@@ -34,10 +34,10 @@ pub fn counter_contract(
 
     match instruction {
         InstructionType::Increment(value) => {
-            current_data.count += 1;
+            current_data.count += value;
         }
         InstructionType::Decrement(value) => {
-            current_data.count -= 1;
+            current_data.count -= value;
         }
     } 
     current_data.serialize(&mut *acc.data.borrow_mut())?;
